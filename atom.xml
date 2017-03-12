@@ -4,9 +4,9 @@
   <subtitle>Life is short, just be yourself.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="blog.zenone.cn/"/>
+  <link href="http://blog.zenone.cn/"/>
   <updated>2016-11-25T14:08:06.000Z</updated>
-  <id>blog.zenone.cn/</id>
+  <id>http://blog.zenone.cn/</id>
   
   <author>
     <name>zenone</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="blog.zenone.cn/2016/11/25/hello-world/"/>
-    <id>blog.zenone.cn/2016/11/25/hello-world/</id>
+    <link href="http://blog.zenone.cn/2016/11/25/hello-world/"/>
+    <id>http://blog.zenone.cn/2016/11/25/hello-world/</id>
     <published>2016-11-25T12:37:03.000Z</published>
     <updated>2016-11-25T14:08:06.000Z</updated>
     
