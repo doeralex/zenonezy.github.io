@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Git - 找回丢失的 commit]]></title>
+    <url>%2F2018%2F09%2F10%2FGit%20-%20%E6%89%BE%E5%9B%9E%E4%B8%A2%E5%A4%B1%E7%9A%84%20commit%2F</url>
+    <content type="text"><![CDATA[上周五，版本提测的日子，快下班的时候同事发现刚提交的代码不见了，由于提交的代码量还挺多，重写至少三五个小时，所以向我求助，好在我帮他找回了丢失的提交，在此记录一下。找回丢失的提交有两种方式，一是通过 git reflog，二是通过git fsck。 git refloggit reflog 会列出本地所有的操作记录，包括 commit、checkout、pull、rebase、merge 等等，因此，只要你提交了代码（执行了 commit），通过git reflog命令就能看到这条提交信息了，然后就可以通过git cherry-pick将这次提交合并过来。 git fsckgit fsck --lost-found 会列出被丢弃的git对象，包括 blob、tree、commit等对象，而且并不是按照时间排序的。 如果这个列表很长的话，想从里面找出最近丢失的commit还是挺困难的，我们可以使用下面的命令优化输出格式： 1git fsck --lost-found | grep "dangling commit" | cut -d" " -f 3 | xargs -I "&#123;&#125;" git --no-pager show -s --pretty=format:'%Creset %C(magenta)%h %C(white)-%Cgreen %s %C(yellow)&lt;%an&gt; %Cred(%ci)%n' --after='2018-08-01' "&#123;&#125;" grep &quot;dangling commit&quot; 限制只输出丢失的commit对象，cut -d&quot; &quot; -f 3 限制只输出 commit 的哈希值(也可以用awk &quot;{print $3}&quot;)，然后使用xargs -I 将commit哈希值替换为 git show命令，当然可以附带很多参数，下面是优化后的结果。 这样我们就可以更加快速的找到丢失的 commit 对象，然后通过git cherry-pick将这次提交合并过来。 参考资料How can I recover a lost commit in Git?Can I get git fsck to show commit names?Git 内部原理 - 维护及数据恢复]]></content>
+      <categories>
+        <category>programming</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+</search>
